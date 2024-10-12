@@ -23,6 +23,10 @@ const Todo = () => {
     settodoList((prev) => [...prev, newTodo]);
     InputRef.current.value = "";
   };
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      Add(); // Call the Add function when Enter is pressed
+    }
   const deleteTodo = (id) => {
     settodoList((prevTodos) => {
       return prevTodos.filter((Todo) => Todo.id !== id);
@@ -55,6 +59,7 @@ const Todo = () => {
       <div className=" flex items-center my-7 bg-gray-200 rounded-full">
         <input
           ref={InputRef}
+           onKeyDown={handleKeyPress}  // Add the "Enter" handler here
           className="bg-transparent border-0 outline-none flex-1 h-10 pl-6 pr-2 placeholder:text-slate-600"
           type="text"
           placeholder="Add your task"
